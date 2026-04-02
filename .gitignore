@@ -1,0 +1,15 @@
+# Variables de entorno (¡AQUÍ ESTÁN TUS CLAVES!)
+.env
+
+# Historial local (opcional si no quieres que se suba el json)
+# historial.json
+
+# Entornos virtuales de Python
+venv/
+__pycache__/
+
+# Archivos compilados de Python
+*.pyc
+
+# Archivos de tokens/autenticación
+*.pickle
