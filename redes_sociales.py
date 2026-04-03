@@ -3,13 +3,21 @@ import requests
 
 from config import *
 
-def publicar_en_square(contenido):
+def publicar_en_square(contenido, image_path=None):
     if MODO_PRUEBA:
         print(f"\n🧪 [MODO PRUEBA] Simulación de envío a Binance Square:\n{contenido}\n")
+        if image_path and os.path.exists(image_path):
+            print(f"📸 [MODO PRUEBA] Imagen adjunta lista para subir: {image_path}")
         return True
 
     url = "https://www.binance.com/bapi/composite/v1/public/pgc/openApi/content/add"
     headers = {"X-Square-OpenAPI-Key": SQUARE_API_KEY, "Content-Type": "application/json", "clienttype": "binanceSkill"}
+    
+    if image_path and os.path.exists(image_path):
+        print(f"📸 Imagen generada detectada: {image_path}")
+        # Nota: La API actual solo envía 'bodyTextOnly'. Para subir la imagen a Binance
+        # se requiere integrar primero el endpoint de subida de media de Square.
+        
     try:
         response = requests.post(url, headers=headers, json={"bodyTextOnly": contenido})
         resultado = response.json()
